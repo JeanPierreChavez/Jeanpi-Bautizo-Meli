@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melissa Bautizo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffb3c6;
+            position: relative;
+            margin: 0;
+            flex-direction: column;
+        }
+        .sobre {
+            width: 80%;
+            max-width: 400px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .sobre:hover {
+            transform: scale(1.1);
+        }
+        .invitacion, .extra-info {
+            display: none;
+            width: 90%;
+            max-width: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .segundo-sobre {
+            display: none;
+            width: 20%;
+            max-width: 100px;
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            cursor: pointer;
+            animation: bounce 1.5s infinite;
+        }
+        .flecha {
+            display: none;
+            position: absolute;
+            top: 110px;
+            right: 50px;
+            font-size: 18px;
+            color: #d00000;
+            font-weight: bold;
+            animation: fadeIn 1s ease-in-out infinite alternate;
+        }
+        .extra-info {
+            display: none;
+            text-align: center;
+        }
+        .extra-info img {
+            width: 100%;
+            max-width: 500px;
+        }
+        .boton-regresar {
+            position: absolute;
+            top: 30px;
+            width: 80px;
+            height: 80px;
+            right: 70px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            display: none; /* Inicialmente oculto */
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes expandFade {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <img src="/Imagenes/sobrei.png" alt="Sobre" class="sobre" onclick="abrirInvitacion()">
+    <img src="/Imagenes/Melissa Invitacion.png" alt="Invitación" class="invitacion">
+    <img src="/Imagenes/tarjeta-de-regalo.png" alt="Sobre" class="segundo-sobre" onclick="abrirExtraInfo()">
+    <div class="extra-info">
+        <img src="/Imagenes/Cuenta.png" alt="Información Extra">
+    </div>
+    <img src="/Imagenes/regreso.png" alt="regresar" onclick="regresarInvitacion()" class="boton-regresar">
+    <div class="flecha">⬆ Dar click aquí</div>
+    
+    <script>
+        function abrirInvitacion() {
+            document.querySelector('.sobre').style.display = 'none';
+            document.querySelector('.invitacion').style.display = 'block';
+            document.querySelector('.segundo-sobre').style.display = 'block';
+            document.querySelector('.flecha').style.display = 'block';
+            document.querySelector('.boton-regresar').style.display = 'none';
+        }
+
+        function abrirExtraInfo() {
+            let sobre = document.querySelector('.segundo-sobre');
+            sobre.style.animation = 'expandFade 0.5s forwards';
+            setTimeout(() => {
+                sobre.style.display = 'none';
+                document.querySelector('.invitacion').style.display = 'none';
+                document.querySelector('.extra-info').style.display = 'block';
+            }, 500);
+            document.querySelector('.boton-regresar').style.display = 'block';
+        }
+
+        function regresarInvitacion() {
+            document.querySelector('.extra-info').style.display = 'none';
+            document.querySelector('.invitacion').style.display = 'block';
+            document.querySelector('.segundo-sobre').style.display = 'block';
+            document.querySelector('.segundo-sobre').style.animation = 'none';
+            document.querySelector('.boton-regresar').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
